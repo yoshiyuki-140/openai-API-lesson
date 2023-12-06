@@ -38,6 +38,7 @@ completion = client.chat.completions.create(
     ]
 )
 
+# レスポンスを格納
 response_script = completion.choices[0].message.content
 
 # 同階層の'resulet.txt'ファイルに結果を出力
