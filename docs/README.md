@@ -1,4 +1,4 @@
-# chatGPT-API-test
+# openai-API-lesson
 - openaiモジュールを使ってみた
 - プロキシ環境でも使えるぞ！
 
