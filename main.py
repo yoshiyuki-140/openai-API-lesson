@@ -15,7 +15,7 @@ client = OpenAI(
 
 # ここにAIに演じてほしい役をプロンプトで設定する。
 # > ここでは統計学のスペシャリストとして設定している
-sysemRole_setting = """
+systemRole_setting = """
 あなたは統計学のスペシャリストです。
 """
 
@@ -32,7 +32,7 @@ completion = client.chat.completions.create(
     model=model,  # 学習モデルを設定する
     messages=[
         # GPT-4がどんな役回りか設定できる ->  例:"あなたは統計学のスペシャリストです！"
-        {"role": "system", "content": sysemRole_setting},
+        {"role": "system", "content": systemRole_setting},
         # GPT-4に投げかける質問を設定する -> 例:"優位水準とはなんですか？"
         {"role": "user", "content": request_script}
     ]
