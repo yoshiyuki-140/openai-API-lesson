@@ -5,8 +5,8 @@ from local import OPENAI_API_KEY, KIT_PROXY  # 同階層にlocal.pyを作成し�
 
 # プロキシ設定、openaiはプロキシ用の環境変数を読み込む 
 # -> 学内では必要,家でやるときは不要
-os.environ['http_proxy'] = KIT_PROXY
-os.environ['https_proxy'] = KIT_PROXY
+# os.environ['http_proxy'] = KIT_PROXY
+# os.environ['https_proxy'] = KIT_PROXY
 
 # openaiにAPIキーを設定する
 client = OpenAI(
@@ -16,25 +16,23 @@ client = OpenAI(
 # ここにAIに演じてほしい役をプロンプトで設定する。
 # > ここでは統計学のスペシャリストとして設定している
 systemRole_setting = """
-あなたは統計学のスペシャリストです。
 """
 
 # ここに、AIに聞きたいことや、やってほしいことを書く
 request_script = """
-有意水準とは何か、200文字程度で説明しなさい。
+MAX SAT問題に対する局所探索を行います。
+
 """
 
 # 学習モデルの設定
-model = "gpt-4"
+model = "gpt-3.5-turbo-16k"
 
 # 設定の読み込み
 completion = client.chat.completions.create(
     model=model,  # 学習モデルを設定する
     messages=[
-        # GPT-4がどんな役回りか設定できる ->  例:"あなたは統計学のスペシャリストです！"
         {"role": "system", "content": systemRole_setting},
-        # GPT-4に投げかける質問を設定する -> 例:"優位水準とはなんですか？"
-        {"role": "user", "content": request_script}
+        {"role": "user", "content": request_script},
     ]
 )
 
